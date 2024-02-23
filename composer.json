@@ -1,0 +1,16 @@
+{
+    "name": "menrui/jobs",
+    "description": "php parallel processing",
+    "type": "project",
+    "license": "MIT",
+    "scripts": {},
+    "autoload": {
+        "psr-4": {
+            "Menrui\\": "src/"
+        }
+    },
+    "require": {
+            "menrui/menrui": "*",
+            "opis/closure": "*"
+    }
+}
