@@ -1,10 +1,10 @@
 <?php
+
 namespace Menrui;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 for ($i = 0; $i < 3; $i++) {
-
     $t = microtime(true);
     $b = new Bootstrap();
     $b->job = new Job\PrintR([

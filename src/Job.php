@@ -101,4 +101,9 @@ class Job
         fclose($this->pipes[2]);
         proc_close($this->proc);
     }
+
+    public function result(string $name): mixed
+    {
+        return $this->result[$name] ?? null;
+    }
 }
