@@ -4,20 +4,20 @@ namespace Menrui\Job;
 
 class Forker extends \Menrui\Job
 {
-    protected $concurrency = 3;
-    protected $resultMerge = true;
-
     public function run()
     {
+        $concurrency = 3;
+        $resultMerge = true;
+
         $this->result = [];
         $jobs = [];
         foreach ($this->jobs as $job) {
             if ($job instanceof Parameter) {
                 if ($c = $job->result('concurrency')) {
-                    $this->concurrency = $c;
+                    $concurrency = $c;
                 }
                 if ($job->result('resultMerge')) {
-                    $this->resultMerge = true;
+                    $resultMerge = true;
                 }
             } else {
                 foreach ($job->result as $job) {
@@ -25,12 +25,12 @@ class Forker extends \Menrui\Job
                 }
             }
         }
-        $jobSegs = array_chunk($jobs, $this->concurrency);
+        $jobSegs = array_chunk($jobs, $concurrency);
         $fork = new \Menrui\Fork();
         foreach ($jobSegs as $jobSeg) {
             $fork->exec($jobSeg);
         }
-        if ($this->resultMerge) {
+        if ($resultMerge) {
             foreach ($jobs as $job) {
                 $this->result = array_merge($this->result, $job->result);
             }

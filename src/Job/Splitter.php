@@ -10,7 +10,10 @@ class Splitter extends \Menrui\Job
 
         $job = $params['job'] ?? null;
         if ($job) {
-            $parameter = $params['parameter'] ?? null;
+            $parameter = null;
+            if (array_key_exists('parameter', $params)) {
+                $parameter = new Parameter($params['parameter']);
+            }
             foreach ($data as $value) {
                 $data = new Data([$value]);
                 $this->result[] = new $job($parameter ? [$parameter, $data] : [$data]);

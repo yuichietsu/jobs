@@ -6,13 +6,17 @@ class Cidr extends \Menrui\Job
 {
     public function run()
     {
-        [$params] = $this->collectSubJobsInfo();
-        if ($params !== null) {
-            $cidr   = $params['cidr'] ?? '';
-            $expand = $params['expand'] ?? false;
-            if ($cidr) {
-                if ($expand) {
-                    $this->result = $this->expandToIpList($cidr);
+        [$params, $results] = $this->collectSubJobsInfo();
+
+        $expand      = $params['expand'] ?? true;
+        $resultMerge = $params['resultMerge'] ?? false;
+        if ($expand) {
+            foreach ($results as $cidr) {
+                $r = $this->expandToIpList($cidr);
+                if ($resultMerge) {
+                    $this->result = array_merge($this->result, $r);
+                } else {
+                    $this->result[] = $r;
                 }
             }
         }
