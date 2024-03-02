@@ -7,7 +7,7 @@ for ($i = 0; $i < 3; $i++) {
 
     $t = microtime(true);
     $b = new Bootstrap();
-    $b->flow = new Job\PrintR([
+    $b->job = new Job\PrintR([
         new Job\UserFunction([
             new Job\Parameter(['function' => function ($data) {
                 $ret = [];
@@ -33,7 +33,7 @@ for ($i = 0; $i < 3; $i++) {
 
     $t = microtime(true);
     $b = new Bootstrap();
-    $b->flow = new Job\PrintR([
+    $b->job = new Job\PrintR([
         new Job\UserFunction([
             new Job\Parameter(['function' => function ($data) {
                 $ret = [];
