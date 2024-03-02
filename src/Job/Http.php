@@ -8,7 +8,7 @@ class Http extends \Menrui\Job
     {
         $this->result = [];
         foreach ($this->jobs as $job) {
-            if ($url = $job->result('url')) {
+            foreach ($job->result as $url) {
                 $this->result[] = file_get_contents($url);
             }
         }

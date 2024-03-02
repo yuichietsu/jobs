@@ -6,7 +6,7 @@ class Cidr extends \Menrui\Job
 {
     public function run()
     {
-        [$params] = $this->extractParameters();
+        [$params] = $this->collectSubJobsInfo();
         if ($params !== null) {
             $cidr   = $params['cidr'] ?? '';
             $expand = $params['expand'] ?? false;

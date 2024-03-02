@@ -22,7 +22,7 @@ $b->job = new Job\PrintR([
             new Job\Forker([
                 new Job\Parameter(['resultMerge' => true]),
                 new Job\Splitter([
-                    new Job\Parameter(['job' => Job\Http::class, 'param' => 'url']),
+                    new Job\Parameter(['job' => Job\Http::class]),
                     new Job\Data([
                         'https://news.yahoo.co.jp/rss/categories/domestic.xml',
                         'https://news.yahoo.co.jp/rss/categories/world.xml',

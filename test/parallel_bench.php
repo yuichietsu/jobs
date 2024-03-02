@@ -21,9 +21,11 @@ for ($i = 0; $i < 3; $i++) {
             new Job\Xml([
                 new Job\Parameter(['xpath' => '/rss/channel/item/title']),
                 new Job\Http([
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/domestic.xml']),
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/world.xml']),
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/business.xml']),
+                    new Job\Data([
+                        'https://news.yahoo.co.jp/rss/categories/domestic.xml',
+                        'https://news.yahoo.co.jp/rss/categories/world.xml',
+                        'https://news.yahoo.co.jp/rss/categories/business.xml',
+                    ]),
                 ]),
             ]),
         ]),
@@ -47,13 +49,13 @@ for ($i = 0; $i < 3; $i++) {
             new Job\Xml([
                 new Job\Parameter(['xpath' => '/rss/channel/item/title']),
                 new Job\Http([
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/domestic.xml']),
+                    new Job\Data(['https://news.yahoo.co.jp/rss/categories/domestic.xml']),
                 ]),
                 new Job\Http([
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/world.xml']),
+                    new Job\Data(['https://news.yahoo.co.jp/rss/categories/world.xml']),
                 ]),
                 new Job\Http([
-                    new Job\Parameter(['url' => 'https://news.yahoo.co.jp/rss/categories/business.xml']),
+                    new Job\Data(['https://news.yahoo.co.jp/rss/categories/business.xml']),
                 ]),
             ]),
         ]),

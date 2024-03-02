@@ -6,7 +6,7 @@ class UserFunction extends \Menrui\Job
 {
     public function run()
     {
-        list($params, $data) = $this->extractParameters();
+        list($params, $data) = $this->collectSubJobsInfo();
         if ($params !== null) {
             $func = $params['function'];
             $this->result = call_user_func($func, $data);

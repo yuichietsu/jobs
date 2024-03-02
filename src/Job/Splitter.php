@@ -6,14 +6,14 @@ class Splitter extends \Menrui\Job
 {
     public function run()
     {
-        list($params, $data) = $this->extractParameters();
-        if ($params !== null) {
-            $job = $params['job'];
-            $key = $params['param'];
-            foreach ($data as $d) {
-                foreach (is_array($d) ? $d : [$d] as $v) {
-                    $this->result[] = new $job([new Parameter([$key => $v])]);
-                }
+        [$params, $data] = $this->collectSubJobsInfo();
+
+        $job = $params['job'] ?? null;
+        if ($job) {
+            $parameter = $params['parameter'] ?? null;
+            foreach ($data as $value) {
+                $data = new Data([$value]);
+                $this->result[] = new $job($parameter ? [$parameter, $data] : [$data]);
             }
         }
         $this->done = true;

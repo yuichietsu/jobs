@@ -6,7 +6,7 @@ class RegExp extends \Menrui\Job
 {
     public function run()
     {
-        list($params, $data) = $this->extractParameters();
+        list($params, $data) = $this->collectSubJobsInfo();
         if ($params !== null) {
             $pattern = $params['pattern'];
             $target  = $params['target'];

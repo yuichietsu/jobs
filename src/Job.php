@@ -8,7 +8,7 @@ class Job
     public $errorMessage = null;
     public $exitCode = 0;
     public array $jobs = [];
-    public $result = null;
+    public array $result = [];
     public $proc;
     public $pipes;
     public $raw = '';
@@ -43,20 +43,18 @@ class Job
     {
     }
 
-    protected function extractParameters()
+    protected function collectSubJobsInfo(): array
     {
-        $data = [];
-        $params = null;
+        $results = [];
+        $params  = [];
         foreach ($this->jobs as $job) {
             if ($job instanceof Job\Parameter) {
-                $params = $job->result;
+                $params = array_merge($params, $job->result);
             } else {
-                foreach (is_array($job->result) ? $job->result : [$job->result] as $r) {
-                    $data[] = $r;
-                }
+                $results = array_merge($results, $job->result);
             }
         }
-        return [$params, $data];
+        return [$params, $results];
     }
 
     public function error($msg)

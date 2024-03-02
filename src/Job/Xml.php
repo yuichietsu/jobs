@@ -6,7 +6,7 @@ class Xml extends \Menrui\Job
 {
     public function run()
     {
-        list($params, $data) = $this->extractParameters();
+        list($params, $data) = $this->collectSubJobsInfo();
         if ($params !== null) {
             $xpath = $params['xpath'];
             foreach ($data as $xml) {

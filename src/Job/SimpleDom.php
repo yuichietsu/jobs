@@ -6,7 +6,7 @@ class SimpleDom extends \Menrui\Job
 {
     public function run()
     {
-        list($params, $data) = $this->extractParameters();
+        list($params, $data) = $this->collectSubJobsInfo();
         if ($params !== null) {
             // selector
             $id    = $params['id'];
