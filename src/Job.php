@@ -4,17 +4,17 @@ namespace Menrui;
 
 class Job
 {
-    public $done = false;
+    public bool $done = false;
     public $errorMessage = null;
     public $exitCode = 0;
-    public $jobs = [];
+    public array $jobs = [];
     public $result = null;
     public $proc;
     public $pipes;
     public $raw = '';
     public $err = '';
 
-    public function __construct($jobs = [])
+    public function __construct(array $jobs = [])
     {
         $this->jobs = $jobs;
     }
@@ -47,12 +47,8 @@ class Job
             if ($job instanceof Job\Parameter) {
                 $params = $job->result;
             } else {
-                if (is_array($job->result)) {
-                    foreach ($job->result as $r) {
-                        $data[] = $r;
-                    }
-                } else {
-                    $data[] = $job->result;
+                foreach (is_array($job->result) ? $job->result : [$job->result] as $r) {
+                    $data[] = $r;
                 }
             }
         }

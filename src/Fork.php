@@ -1,12 +1,13 @@
 <?php
+
 namespace Menrui;
 
 class Fork
 {
-    public $cmd;
-    public $selectTimeout = 0.5;
+    public string $cmd;
+    public float $selectTimeout = 0.5;
 
-    public function __construct($cmd = null)
+    public function __construct(string $cmd = null)
     {
         if ($cmd === null) {
             $cmd = sprintf('php %s/../bin/fork.php', __DIR__);
