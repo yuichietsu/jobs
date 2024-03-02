@@ -16,7 +16,11 @@ class Job
 
     public function __construct(array $jobs = [])
     {
-        $this->jobs = $jobs;
+        if (0 < count($jobs) && !$jobs[0] instanceof Job) {
+            $this->jobs[] = new Job\Parameter($jobs);
+        } else {
+            $this->jobs = $jobs;
+        }
     }
 
     public function nextJobs(&$jobs = null)
